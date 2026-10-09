@@ -297,13 +297,20 @@ contract Deploy is Script {
         h[19] = 21176;
     }
 
+    /// @dev On Arbitrum-stack chains `block.number` is the *L1* block; the frontend scans logs by L2 block, so ask the
+    ///      ArbSys precompile (0x64). Local forks don't emulate it, so fall back to block.number there.
+    function _l2BlockNumber() internal view returns (uint256) {
+        (bool ok, bytes memory ret) = address(0x64).staticcall(abi.encodeWithSignature("arbBlockNumber()"));
+        return ok && ret.length == 32 ? abi.decode(ret, (uint256)) : block.number;
+    }
+
     // ───────────────────────────── outputs ─────────────────────────────
 
     function _writeOutputs(Deployed memory d, Roles memory r) internal {
         if (!vm.envOr("GOLDBENCH_WRITE_OUTPUTS", true)) return;
         string memory k = "deployment";
         vm.serializeUint(k, "chainId", block.chainid);
-        vm.serializeUint(k, "deployedAtBlock", block.number);
+        vm.serializeUint(k, "deployedAtBlock", _l2BlockNumber());
         vm.serializeAddress(k, "timelock", address(d.timelock));
         vm.serializeAddress(k, "marketClock", address(d.clock));
         vm.serializeAddress(k, "oracleAdapter", address(d.oracle));

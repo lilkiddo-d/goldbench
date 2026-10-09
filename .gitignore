@@ -23,3 +23,4 @@ app/tsconfig.tsbuildinfo
 
 # local tooling
 .claude/
+*.recovery.lock
