@@ -1,0 +1,16 @@
+{
+  "name": "goldbench",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@12.9.1",
+  "scripts": {
+    "build:contracts": "cd contracts && forge build",
+    "test:contracts": "cd contracts && forge test",
+    "coverage": "cd contracts && forge coverage --report summary --no-match-coverage \"(test|script|mocks)\"",
+    "slither": "cd contracts && python -m slither . --config-file slither.config.json",
+    "dev": "pnpm --filter app dev",
+    "build:app": "pnpm --filter app build",
+    "keeper": "pnpm --filter scripts keeper",
+    "record": "pnpm --filter scripts record"
+  }
+}

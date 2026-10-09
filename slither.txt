@@ -1,0 +1,465 @@
+'forge clean' running (wd: C:\Users\dunam\OneDrive\Desktop\20 Project\11 Goldbench\contracts)
+'forge config --json' running
+'forge build --build-info --deny never --skip ./test/** ./script/** --force' running (wd: C:\Users\dunam\OneDrive\Desktop\20 Project\11 Goldbench\contracts)
+INFO:Detectors:
+Detector: calls-loop
+PriceHistory.recordDailyCloses() (src/signal/PriceHistory.sol#110-130) has external calls inside a loop: (p) = oracle.getPrice(a) (src/signal/PriceHistory.sol#120-128)
+PriceHistory.seedFromOracle(address,uint80[]) (src/signal/PriceHistory.sol#135-154) has external calls inside a loop: (p,ts) = oracle.getRoundPrice(asset,roundIds[i]) (src/signal/PriceHistory.sol#143)
+PriceHistory.seedFromOracle(address,uint80[]) (src/signal/PriceHistory.sol#135-154) has external calls inside a loop: day = clock.etDay(ts) (src/signal/PriceHistory.sol#148)
+PriceHistory.seedFromOracle(address,uint80[]) (src/signal/PriceHistory.sol#135-154) has external calls inside a loop: ! clock.isTradingDay(day) (src/signal/PriceHistory.sol#151)
+SignalEngine.computeSignal() (src/signal/SignalEngine.sol#177-229) has external calls inside a loop: have = Math.min(have,history.count(_basket[i])) (src/signal/SignalEngine.sol#183)
+SignalEngine.computeSignal() (src/signal/SignalEngine.sol#177-229) has external calls inside a loop: maL = history.sma(a,longW) (src/signal/SignalEngine.sol#195)
+SignalEngine.computeSignal() (src/signal/SignalEngine.sol#177-229) has external calls inside a loop: s.basketRatioLong += (w * history.median3(a) * 1e18) / maL / 10_000 (src/signal/SignalEngine.sol#196)
+SignalEngine.computeSignal() (src/signal/SignalEngine.sol#177-229) has external calls inside a loop: s.basketRatioShort += (w * history.sma(a,shortW) * 1e18) / maL / 10_000 (src/signal/SignalEngine.sol#197)
+SignalEngine.computeSignal() (src/signal/SignalEngine.sol#177-229) has external calls inside a loop: s.basketVolBps += (w * history.volatility(a,volW)) / 10_000 (src/signal/SignalEngine.sol#198)
+SignalEngine.computeSignal() (src/signal/SignalEngine.sol#177-229) has external calls inside a loop: have = Math.min(have,history.count(_basket[i])) (src/signal/SignalEngine.sol#183)
+	Calls stack containing the loop:
+		SignalEngine.refreshSignal()
+SignalEngine.computeSignal() (src/signal/SignalEngine.sol#177-229) has external calls inside a loop: maL = history.sma(a,longW) (src/signal/SignalEngine.sol#195)
+	Calls stack containing the loop:
+		SignalEngine.refreshSignal()
+SignalEngine.computeSignal() (src/signal/SignalEngine.sol#177-229) has external calls inside a loop: s.basketRatioLong += (w * history.median3(a) * 1e18) / maL / 10_000 (src/signal/SignalEngine.sol#196)
+	Calls stack containing the loop:
+		SignalEngine.refreshSignal()
+SignalEngine.computeSignal() (src/signal/SignalEngine.sol#177-229) has external calls inside a loop: s.basketRatioShort += (w * history.sma(a,shortW) * 1e18) / maL / 10_000 (src/signal/SignalEngine.sol#197)
+	Calls stack containing the loop:
+		SignalEngine.refreshSignal()
+SignalEngine.computeSignal() (src/signal/SignalEngine.sol#177-229) has external calls inside a loop: s.basketVolBps += (w * history.volatility(a,volW)) / 10_000 (src/signal/SignalEngine.sol#198)
+	Calls stack containing the loop:
+		SignalEngine.refreshSignal()
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.convertToShares(uint256)
+		ERC4626Upgradeable._convertToShares(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.convertToShares(uint256)
+		ERC4626Upgradeable._convertToShares(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.convertToShares(uint256)
+		ERC4626Upgradeable._convertToShares(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.convertToShares(uint256)
+		ERC4626Upgradeable._convertToShares(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.convertToAssets(uint256)
+		ERC4626Upgradeable._convertToAssets(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.convertToAssets(uint256)
+		ERC4626Upgradeable._convertToAssets(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.convertToAssets(uint256)
+		ERC4626Upgradeable._convertToAssets(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.convertToAssets(uint256)
+		ERC4626Upgradeable._convertToAssets(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.previewDeposit(uint256)
+		ERC4626Upgradeable._convertToShares(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.previewDeposit(uint256)
+		ERC4626Upgradeable._convertToShares(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.previewDeposit(uint256)
+		ERC4626Upgradeable._convertToShares(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.previewDeposit(uint256)
+		ERC4626Upgradeable._convertToShares(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.previewMint(uint256)
+		ERC4626Upgradeable._convertToAssets(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.previewMint(uint256)
+		ERC4626Upgradeable._convertToAssets(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.previewMint(uint256)
+		ERC4626Upgradeable._convertToAssets(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.previewMint(uint256)
+		ERC4626Upgradeable._convertToAssets(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.previewWithdraw(uint256)
+		ERC4626Upgradeable._convertToShares(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.previewWithdraw(uint256)
+		ERC4626Upgradeable._convertToShares(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.previewWithdraw(uint256)
+		ERC4626Upgradeable._convertToShares(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.previewWithdraw(uint256)
+		ERC4626Upgradeable._convertToShares(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.previewRedeem(uint256)
+		ERC4626Upgradeable._convertToAssets(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.previewRedeem(uint256)
+		ERC4626Upgradeable._convertToAssets(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.previewRedeem(uint256)
+		ERC4626Upgradeable._convertToAssets(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		ERC4626Upgradeable.previewRedeem(uint256)
+		ERC4626Upgradeable._convertToAssets(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		RotationVault.totalAssets()
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		RotationVault.maxDeposit(address)
+		RotationVault.totalAssets()
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		RotationVault.maxDeposit(address)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		RotationVault.maxDeposit(address)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		RotationVault.maxDeposit(address)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		RotationVault.maxMint(address)
+		RotationVault.maxDeposit(address)
+		RotationVault.totalAssets()
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		RotationVault.maxMint(address)
+		RotationVault.maxDeposit(address)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		RotationVault.maxMint(address)
+		RotationVault.maxDeposit(address)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		RotationVault.maxMint(address)
+		RotationVault.maxDeposit(address)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		RotationVault.maxRedeem(address)
+		ERC4626Upgradeable.convertToShares(uint256)
+		ERC4626Upgradeable._convertToShares(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		RotationVault.maxRedeem(address)
+		ERC4626Upgradeable.convertToShares(uint256)
+		ERC4626Upgradeable._convertToShares(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		RotationVault.maxRedeem(address)
+		ERC4626Upgradeable.convertToShares(uint256)
+		ERC4626Upgradeable._convertToShares(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		RotationVault.maxRedeem(address)
+		ERC4626Upgradeable.convertToShares(uint256)
+		ERC4626Upgradeable._convertToShares(uint256,Math.Rounding)
+		RotationVault.totalAssets()
+		RotationVault._valuation(bool)
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		RotationVault.deposit(uint256,address)
+		RotationVault._preDeposit(address)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		RotationVault.deposit(uint256,address)
+		RotationVault._preDeposit(address)
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		RotationVault.deposit(uint256,address)
+		RotationVault._preDeposit(address)
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		RotationVault.deposit(uint256,address)
+		RotationVault._preDeposit(address)
+		RotationVault._valuation(bool)
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		RotationVault.mint(uint256,address)
+		RotationVault._preDeposit(address)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		RotationVault.mint(uint256,address)
+		RotationVault._preDeposit(address)
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		RotationVault.mint(uint256,address)
+		RotationVault._preDeposit(address)
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		RotationVault.mint(uint256,address)
+		RotationVault._preDeposit(address)
+		RotationVault._valuation(bool)
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		RotationVault.withdraw(uint256,address,address)
+		RotationVault._preWithdraw(address,address)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		RotationVault.withdraw(uint256,address,address)
+		RotationVault._preWithdraw(address,address)
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		RotationVault.withdraw(uint256,address,address)
+		RotationVault._preWithdraw(address,address)
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		RotationVault.withdraw(uint256,address,address)
+		RotationVault._preWithdraw(address,address)
+		RotationVault._valuation(bool)
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		RotationVault.redeem(uint256,address,address)
+		RotationVault._preWithdraw(address,address)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		RotationVault.redeem(uint256,address,address)
+		RotationVault._preWithdraw(address,address)
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		RotationVault.redeem(uint256,address,address)
+		RotationVault._preWithdraw(address,address)
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		RotationVault.redeem(uint256,address,address)
+		RotationVault._preWithdraw(address,address)
+		RotationVault._valuation(bool)
+RotationVault.redeemInKind(uint256,address,address) (src/vault/RotationVault.sol#253-279) has external calls inside a loop: amounts[i + 1] = Math.mulDiv(IERC20(_holdings[i]).balanceOf(address(this)),shares,supply) (src/vault/RotationVault.sol#272)
+RotationVault._ensureHolding(address,bool) (src/vault/RotationVault.sol#584-593) has external calls inside a loop: assetDecimals[a] = IERC20Metadata(a).decimals() (src/vault/RotationVault.sol#590)
+	Calls stack containing the loop:
+		RotationVault.startRebalance()
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		RotationVault.startRebalance()
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		RotationVault.startRebalance()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		RotationVault.startRebalance()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		RotationVault.startRebalance()
+		RotationVault._valuation(bool)
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		RotationVault.executeChunk(uint256)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		RotationVault.executeChunk(uint256)
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		RotationVault.executeChunk(uint256)
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		RotationVault.executeChunk(uint256)
+		RotationVault._valuation(bool)
+RotationVault._sellLeg(uint256,uint256,uint256[],uint256,uint256) (src/vault/RotationVault.sol#469-483) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#478)
+	Calls stack containing the loop:
+		RotationVault.executeChunk(uint256)
+RotationVault._swap(uint256,address,address,uint256,uint256,uint256) (src/vault/RotationVault.sol#561-575) has external calls inside a loop: out = dex.swapExactIn(tokenIn,tokenOut,amountIn,minOut,address(this),deadline) (src/vault/RotationVault.sol#568-573)
+	Calls stack containing the loop:
+		RotationVault.executeChunk(uint256)
+		RotationVault._sellLeg(uint256,uint256,uint256[],uint256,uint256)
+RotationVault._buy(uint256,address,uint256,uint256,uint256) (src/vault/RotationVault.sol#550-559) has external calls inside a loop: baseScale = 10 ** IERC20Metadata(asset()).decimals() (src/vault/RotationVault.sol#555)
+	Calls stack containing the loop:
+		RotationVault.executeChunk(uint256)
+		RotationVault._buyLeg(uint256,uint256,uint256,uint256)
+		RotationVault._maybeBuy(RotationVault.BuyCtx,address,uint256)
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		RotationVault.allocation()
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		RotationVault.allocation()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		RotationVault.allocation()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		RotationVault.allocation()
+		RotationVault._valuation(bool)
+RotationVault._valuation(bool) (src/vault/RotationVault.sol#341-355) has external calls inside a loop: bal = IERC20(a).balanceOf(address(this)) (src/vault/RotationVault.sol#349)
+	Calls stack containing the loop:
+		RotationVault.stockWeightBps()
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: (price) = modules.oracle.getPrice(a) (src/vault/RotationVault.sol#373-378)
+	Calls stack containing the loop:
+		RotationVault.stockWeightBps()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: ref = modules.history.latestClose(a) (src/vault/RotationVault.sol#380)
+	Calls stack containing the loop:
+		RotationVault.stockWeightBps()
+		RotationVault._valuation(bool)
+RotationVault._assetPrice(address,bool) (src/vault/RotationVault.sol#372-386) has external calls inside a loop: modules.history.latestClose(a) (src/vault/RotationVault.sol#377)
+	Calls stack containing the loop:
+		RotationVault.stockWeightBps()
+		RotationVault._valuation(bool)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation/#calls-inside-a-loop
+INFO:Detectors:
+Detector: timestamp
+UniswapV3DexAdapter.swapExactIn(address,address,uint256,uint256,address,uint256) (src/dex/UniswapV3DexAdapter.sol#49-84) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp > deadline (src/dex/UniswapV3DexAdapter.sol#57)
+ChainlinkOracleAdapter.getPrice(address) (src/oracle/ChainlinkOracleAdapter.sol#68-78) uses timestamp for comparisons
+	Dangerous comparisons:
+	- ts == 0 || ts > block.timestamp (src/oracle/ChainlinkOracleAdapter.sol#75)
+	- block.timestamp - ts > c.maxStaleness (src/oracle/ChainlinkOracleAdapter.sol#76)
+ChainlinkOracleAdapter.getRoundPrice(address,uint80) (src/oracle/ChainlinkOracleAdapter.sol#82-88) uses timestamp for comparisons
+	Dangerous comparisons:
+	- ts == 0 || ts > block.timestamp (src/oracle/ChainlinkOracleAdapter.sol#86)
+ChainlinkOracleAdapter._checkSequencer() (src/oracle/ChainlinkOracleAdapter.sol#96-102) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp - startedAt <= sequencerGracePeriod (src/oracle/ChainlinkOracleAdapter.sol#101)
+PriceHistory.recordDailyCloses() (src/signal/PriceHistory.sol#110-130) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp > closeTs + maxRecordDelay (src/signal/PriceHistory.sol#113)
+	- s.count != 0 && s.lastDay >= day (src/signal/PriceHistory.sol#118)
+PriceHistory.seedFromOracle(address,uint80[]) (src/signal/PriceHistory.sol#135-154) uses timestamp for comparisons
+	Dangerous comparisons:
+	- day > latestAllowed (src/signal/PriceHistory.sol#150)
+ProjectTokenHooks.unstake(uint256) (src/token/ProjectTokenHooks.sol#158-168) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp < lockedUntil[msg.sender] (src/token/ProjectTokenHooks.sol#160)
+ProjectTokenHooks.vote(uint256,bool) (src/token/ProjectTokenHooks.sol#235-246) uses timestamp for comparisons
+	Dangerous comparisons:
+	- p.end == 0 || block.timestamp >= p.end (src/token/ProjectTokenHooks.sol#237)
+ProjectTokenHooks.queue(uint256) (src/token/ProjectTokenHooks.sol#250-263) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp < p.end (src/token/ProjectTokenHooks.sol#253)
+RotationVault._accrueFee() (src/vault/RotationVault.sol#315-329) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp <= last (src/vault/RotationVault.sol#317)
+	- f >= denom (src/vault/RotationVault.sol#324)
+	- feeShares == 0 (src/vault/RotationVault.sol#326)
+RotationVault.startRebalance() (src/vault/RotationVault.sol#399-431) uses timestamp for comparisons
+	Dangerous comparisons:
+	- pl.active && block.timestamp <= pl.expiresAt (src/vault/RotationVault.sol#402)
+	- lastRebalanceStart != 0 && block.timestamp < next (src/vault/RotationVault.sol#404)
+RotationVault.executeChunk(uint256) (src/vault/RotationVault.sol#433-466) uses timestamp for comparisons
+	Dangerous comparisons:
+	- block.timestamp > pl.expiresAt (src/vault/RotationVault.sol#436)
+	- block.timestamp > deadline (src/vault/RotationVault.sol#441)
+	- pl.lastChunkAt != 0 && block.timestamp < uint256(pl.lastChunkAt) + chunkInterval (src/vault/RotationVault.sol#443)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#block-timestamp
+INFO:Detectors:
+Detector: cyclomatic-complexity
+SignalEngine.computeSignal() (src/signal/SignalEngine.sol#177-229) has a high cyclomatic complexity (13).
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#cyclomatic-complexity
+INFO:Detectors:
+Detector: missing-inheritance
+FeeCollector (src/fees/FeeCollector.sol#14-82) should inherit from IRegistrar (src/vault/VaultFactory.sol#8-10)
+ProjectTokenHooks (src/token/ProjectTokenHooks.sol#22-264) should inherit from IHooksRegistrar (src/vault/VaultFactory.sol#12-14)
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#missing-inheritance
+INFO:Detectors:
+Detector: unindexed-event-address
+Event SignalEngine.DefensiveAssetsSet(address,address) (src/signal/SignalEngine.sol#59) has address parameters but no indexed parameters
+Event SignalEngine.HistorySet(address) (src/signal/SignalEngine.sol#60) has address parameters but no indexed parameters
+Reference: https://github.com/crytic/slither/wiki/Detector-Documentation#unindexed-event-address-parameters
+INFO:Slither:. analyzed (62 contracts with 96 detectors), 108 result(s) found

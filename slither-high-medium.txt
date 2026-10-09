@@ -1,0 +1,3 @@
+--ignore-compile used, if something goes wrong, consider removing the ignore compile flag
+'forge config --json' running
+INFO:Slither:. analyzed (62 contracts with 59 detectors), 0 result(s) found

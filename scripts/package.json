@@ -1,0 +1,21 @@
+{
+  "name": "scripts",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "keeper": "tsx src/keeper.ts",
+    "record": "tsx src/record-prices.ts",
+    "seed": "tsx src/seed-history.ts",
+    "status": "tsx src/status.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "viem": "^2.57.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
+  }
+}
