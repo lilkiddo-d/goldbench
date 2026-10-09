@@ -14,7 +14,7 @@ Prerequisites: Foundry ≥ 1.8, Node ≥ 20, pnpm ≥ 9, `pnpm install` at the r
 - [ ] **Run steps 2 → seed on a weekday**, ideally during or right after US market hours. Stock feeds are 24/5, and seeding needs a fresh live price as its sanity reference.
 - [ ] **Seed BEFORE starting the keeper.** The first daily recording permanently closes seeding.
 - [ ] **Use a private RPC** (e.g. Alchemy) for deploy + keeper if possible: `--rpc-url $ROBINHOOD_RPC_URL`. The public endpoint rate-limits and showed Cloudflare challenges during testing.
-- [ ] **Verification:** Blockscout's API was also behind a Cloudflare challenge at times. If `--verify` fails, the deploy is still complete; re-run the same command with `--resume`, or verify later with `forge verify-contract <addr> <path:Contract> --verifier blockscout --verifier-url https://robinhoodchain.blockscout.com/api/ --chain 4663`.
+- [ ] **Verification:** Blockscout's API sits behind a Cloudflare bot challenge (forge got "0 / 12 contracts verified" on the real deploy), so the deploy command verifies through **Sourcify**, which supports chain 4663 and which Blockscout imports. To (re)verify one contract: `forge verify-contract <addr> <path:Contract> --chain 4663 --verifier sourcify --root contracts`.
 - [ ] **After deploy, commit** `deployments/4663.json` and `app/src/config/deployments.4663.json` (the app ships a placeholder until then).
 
 ---
@@ -42,7 +42,7 @@ cast wallet address --account goldbench-keeper
 Replace `<OWNER_SAFE>` with the multisig that will propose/cancel on the 48h Timelock and receive fees, and `<KEEPER_ADDRESS>` with the address from step 1. (`GOLDBENCH_GUARDIAN` defaults to the owner; add it to use a separate pause key.)
 
 ```bash
-cd contracts && GOLDBENCH_OWNER=<OWNER_SAFE> GOLDBENCH_KEEPER=<KEEPER_ADDRESS> forge script script/Deploy.s.sol --rpc-url https://rpc.mainnet.chain.robinhood.com --account goldbench-deployer --broadcast --slow --verify --verifier blockscout --verifier-url https://robinhoodchain.blockscout.com/api/
+cd contracts && GOLDBENCH_OWNER=<OWNER_SAFE> GOLDBENCH_KEEPER=<KEEPER_ADDRESS> forge script script/Deploy.s.sol --rpc-url https://rpc.mainnet.chain.robinhood.com --account goldbench-deployer --broadcast --slow --verify --verifier sourcify
 ```
 
 What it does (all in one script, asserted at the end):
