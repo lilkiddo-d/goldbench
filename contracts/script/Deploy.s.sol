@@ -76,9 +76,10 @@ contract Deploy is Script {
 
     function run() external returns (Deployed memory d) {
         require(block.chainid == RH.CHAIN_ID, "Deploy: not Robinhood Chain (use a fork of 4663)");
-        Roles memory r = _roles();
-
+        // Start broadcasting first: only then does readCallers() return the real signer (--account keystore).
+        // Read before it, forge reports its default placeholder sender unless --sender is passed.
         vm.startBroadcast();
+        Roles memory r = _roles();
         d = _deployCore(r);
         _configure(d, r);
         _createVaults(d, r);
